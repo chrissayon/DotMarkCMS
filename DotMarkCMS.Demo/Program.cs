@@ -1,4 +1,4 @@
-using DotMarkCMS.Registration;
+using DotMarkCMS.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDotMarkCMS();
+builder.Services.AddDotMarkCMS(options =>
+{
+    options.RootDirectory = builder.Configuration.GetValue<string>("DotMarkCMS:RootDirectory");
+});
 
 var app = builder.Build();
 
@@ -17,13 +20,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/Blog1", () =>
-{
-    var rootFolder = builder.Configuration.GetValue<string>("DotMarkCMS:RootDirectory");
-    var dasd = File.ReadAllTextAsync($"{AppDomain.CurrentDomain.BaseDirectory}/{rootFolder}/Blog1.md");
-    return dasd;
-})
-.WithName("Blog1")
-.WithOpenApi();
+app.UseDotMarkCMS();
+
 
 app.Run();
