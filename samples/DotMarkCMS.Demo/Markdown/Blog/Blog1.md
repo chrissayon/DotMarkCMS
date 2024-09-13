@@ -1,6 +1,6 @@
 ---
 title: 'Blog1'
-url: 'blog1'
+slug: 'blog1'
 section: 'Blog'
 ---
 

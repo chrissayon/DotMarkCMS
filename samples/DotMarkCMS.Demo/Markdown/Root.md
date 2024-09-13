@@ -1,6 +1,6 @@
 ---
 title: 'Root'
-url: 'root'
+slug: 'root'
 ---
 
 # Root

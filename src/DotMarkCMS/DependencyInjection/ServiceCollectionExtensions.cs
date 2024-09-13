@@ -24,6 +24,7 @@ public static class ServiceCollectionExtensions
     public static void UseDotMarkCMS(this WebApplication app)
     {
         var options = app.Services.GetRequiredService<IOptions<DotMarkCMSOptions>>().Value;
+        var slugList = new Dictionary<string, List<string>>();
 
         // Enumerate all markdown files within the directory
         var files = Directory.EnumerateFiles(options.RootDirectory, "*.md", SearchOption.AllDirectories);
@@ -44,6 +45,24 @@ public static class ServiceCollectionExtensions
             })
             .WithTags(frontMatter.Section)
             .WithName(url)
+            .WithOpenApi();
+
+            // Add slug to the dictionary under its section
+            if (!slugList.ContainsKey(frontMatter.Section))
+            {
+                slugList[frontMatter.Section] = [];
+            }
+
+            slugList[frontMatter.Section].Add(frontMatter.Slug);
+        }
+
+        foreach (var slug in slugList)
+        {
+            app.MapGet(slug.Key, () =>
+            {
+                return slug.Value;
+            })
+            .WithTags("Slug List")
             .WithOpenApi();
         }
     }
