@@ -13,6 +13,7 @@ public static class ServiceCollectionExtensions
         services.Configure<DotMarkCMSOptions>(options =>
         {
             options.RootDirectory = "/";
+            options.BaseUrl = "/";
         });
     }
 
@@ -33,8 +34,9 @@ public static class ServiceCollectionExtensions
         {
             // Extract metadata
             var frontMatter = FrontMatterHelper.ExtractFrontMatter(file);
-            string url = string.IsNullOrEmpty(frontMatter.Section) ? string.Empty : frontMatter.Section; 
-            url += $"/{frontMatter.Slug}";
+            string url = string.IsNullOrEmpty(options.BaseUrl)     ? string.Empty : options.BaseUrl;
+            url       += string.IsNullOrEmpty(frontMatter.Section) ? string.Empty : frontMatter.Section; 
+            url       += $"/{frontMatter.Slug}";
 
             // Construct the route based on metadata
             app.MapGet(url, async () =>
