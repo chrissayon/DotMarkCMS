@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DotMarkCMS.Helper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -8,7 +9,6 @@ public static class ServiceCollectionExtensions
 {
     public static void AddDotMarkCMS(this IServiceCollection services, CancellationToken cancellationToken = default)
     {
-
     }
 
     public static void AddDotMarkCMS(this IServiceCollection services, Action<DotMarkCMSOptions> options, CancellationToken cancellationToken = default)
@@ -24,7 +24,8 @@ public static class ServiceCollectionExtensions
 
         foreach (string file in files)
         {
-            app.MapGet($"/{file.Split("\\").Last()}", () =>
+            var metaData = FrontMatterHelper.ExtractFrontMatter(file);
+            app.MapGet($"{metaData.Url}", () =>
             {
                 var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, file);
                 var content = File.ReadAllTextAsync(filePath);
