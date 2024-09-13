@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Markdown\Blog\Fruit\Apple.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Markdown\Root.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

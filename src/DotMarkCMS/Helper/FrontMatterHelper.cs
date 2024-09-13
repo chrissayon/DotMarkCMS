@@ -28,9 +28,13 @@ public static class FrontMatterHelper
                     var key = parts[0].Trim().ToLower();
                     var value = parts[1].Trim().Trim('\'', '"'); // Remove quotes if present
 
-                    if (key == "url")
+                    if (key.ToUpper() == "SLUG")
                     {
-                        frontMatter.Url = value;
+                        frontMatter.Slug = value;
+                    }
+                    else if (key.ToUpper() == "SECTION")
+                    {
+                        frontMatter.Section = value;
                     }
                     else
                     {
@@ -47,6 +51,7 @@ public static class FrontMatterHelper
 
 public class FrontMatter
 {
-    public string Url { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
+    public string Section { get; set; } = string.Empty;
     public Dictionary<string, string> MetaData = [];
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System.IO;
 
 namespace DotMarkCMS.DependencyInjection;
 
@@ -24,50 +25,24 @@ public static class ServiceCollectionExtensions
     {
         var options = app.Services.GetRequiredService<IOptions<DotMarkCMSOptions>>().Value;
 
-        // Slugs
-        var directories = Directory.EnumerateDirectories(options.RootDirectory);
-        foreach (string directory in directories)
-        {
-            var subfolder = directory.Split('\\').Last();
-            app.MapGet($"{subfolder}", () =>
-            {
-                var slugs = Directory.EnumerateFiles(directory)
-                                     .Select(f => FrontMatterHelper.ExtractFrontMatter(f).Url)
-                                     .ToList();
-                
-                return slugs;
-            })
-            .WithName($"{subfolder}")
-            .WithOpenApi();
+        // Enumerate all markdown files within the directory
+        var files = Directory.EnumerateFiles(options.RootDirectory, "*.md", SearchOption.AllDirectories);
 
-            // Files
-            var files = Directory.EnumerateFiles(directory, "*.md", SearchOption.AllDirectories);
-            foreach (string file in files)
-            {
-                var metaData = FrontMatterHelper.ExtractFrontMatter(file);
-                app.MapGet($"{subfolder}/{metaData.Url}", () =>
-                {
-                    var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, file);
-                    var content = File.ReadAllTextAsync(filePath);
-                    return content;
-                })
-                .WithName($"{file}")
-                .WithOpenApi();
-            }
-        }
-
-        // Root
-        var rootFiles = Directory.EnumerateFiles(options.RootDirectory, "*.md");
-        foreach (string file in rootFiles)
+        foreach (string file in files)
         {
-            var metaData = FrontMatterHelper.ExtractFrontMatter(file);
-            app.MapGet($"{metaData.Url}", () =>
+            // Extract metadata
+            var frontMatter = FrontMatterHelper.ExtractFrontMatter(file);
+            string url = string.IsNullOrEmpty(frontMatter.Section) ? string.Empty : frontMatter.Section; 
+            url += $"/{frontMatter.Slug}";
+
+            // Construct the route based on metadata
+            app.MapGet(url, async () =>
             {
                 var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, file);
-                var content = File.ReadAllTextAsync(filePath);
+                var content = await File.ReadAllTextAsync(filePath);
                 return content;
             })
-            .WithName($"{file}")
+            .WithName(url)
             .WithOpenApi();
         }
     }
