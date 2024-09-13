@@ -11,4 +11,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotMarkCMS\DotMarkCMS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Markdown\Blog1.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
