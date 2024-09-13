@@ -1,8 +1,8 @@
 ﻿using DotMarkCMS.Helper;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System.IO;
 
 namespace DotMarkCMS.DependencyInjection;
 
@@ -42,6 +42,7 @@ public static class ServiceCollectionExtensions
                 var content = await File.ReadAllTextAsync(filePath);
                 return content;
             })
+            .WithTags(frontMatter.Section)
             .WithName(url)
             .WithOpenApi();
         }
