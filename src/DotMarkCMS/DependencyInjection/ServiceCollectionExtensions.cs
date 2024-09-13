@@ -20,7 +20,7 @@ public static class ServiceCollectionExtensions
     {
         var options = app.Services.GetRequiredService<IOptions<DotMarkCMSOptions>>().Value;
 
-        var files = Directory.EnumerateFiles(options.RootDirectory);
+        var files = Directory.EnumerateFiles(options.RootDirectory, "*.md", SearchOption.AllDirectories);
 
         foreach (string file in files)
         {
