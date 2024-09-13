@@ -1,8 +1,8 @@
 ---
-title: 'Blog1'
-url: 'blog1'
+title: 'Root'
+url: 'root'
 ---
 
-# Blog1
+# Root
 
-Blog1
+Root
