@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkCMS", "DotMarkCMS\DotMarkCMS.csproj", "{D9CF14BA-5DDC-4414-980D-B74E73D0F5AF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FAA524BE-424C-453A-9087-273611D9C446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotMarkCMS.Demo", "DotMarkCMS.Demo\DotMarkCMS.Demo.csproj", "{CAE7840A-530C-4865-AC24-91E62A61B40F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{865EF7C6-0BD1-4B3C-B786-E9D75BA255C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkCMS", "src\DotMarkCMS\DotMarkCMS.csproj", "{047D62E9-94D3-4F4D-8622-CCF33E52B21B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotMarkCMS.Demo", "samples\DotMarkCMS.Demo\DotMarkCMS.Demo.csproj", "{42D21DC7-2D98-4BF6-B88E-EAD346E8EC26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +17,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9CF14BA-5DDC-4414-980D-B74E73D0F5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9CF14BA-5DDC-4414-980D-B74E73D0F5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9CF14BA-5DDC-4414-980D-B74E73D0F5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9CF14BA-5DDC-4414-980D-B74E73D0F5AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAE7840A-530C-4865-AC24-91E62A61B40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAE7840A-530C-4865-AC24-91E62A61B40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAE7840A-530C-4865-AC24-91E62A61B40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAE7840A-530C-4865-AC24-91E62A61B40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047D62E9-94D3-4F4D-8622-CCF33E52B21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047D62E9-94D3-4F4D-8622-CCF33E52B21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047D62E9-94D3-4F4D-8622-CCF33E52B21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047D62E9-94D3-4F4D-8622-CCF33E52B21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D21DC7-2D98-4BF6-B88E-EAD346E8EC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D21DC7-2D98-4BF6-B88E-EAD346E8EC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D21DC7-2D98-4BF6-B88E-EAD346E8EC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D21DC7-2D98-4BF6-B88E-EAD346E8EC26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{047D62E9-94D3-4F4D-8622-CCF33E52B21B} = {FAA524BE-424C-453A-9087-273611D9C446}
+		{42D21DC7-2D98-4BF6-B88E-EAD346E8EC26} = {865EF7C6-0BD1-4B3C-B786-E9D75BA255C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C817D86-3D11-4909-88BB-F1199B7821C8}

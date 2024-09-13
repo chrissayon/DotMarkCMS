@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotMarkCMS\DotMarkCMS.csproj" />
+    <ProjectReference Include="..\..\src\DotMarkCMS\DotMarkCMS.csproj" />
   </ItemGroup>
 
   <ItemGroup>
