@@ -9,6 +9,10 @@ public static class ServiceCollectionExtensions
 {
     public static void AddDotMarkCMS(this IServiceCollection services, CancellationToken cancellationToken = default)
     {
+        services.Configure<DotMarkCMSOptions>(options =>
+        {
+            options.RootDirectory = "/";
+        });
     }
 
     public static void AddDotMarkCMS(this IServiceCollection services, Action<DotMarkCMSOptions> options, CancellationToken cancellationToken = default)
