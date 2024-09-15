@@ -28,7 +28,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${VERSION}
+        run: dotnet build .\src\DotMarkCMS\DotMarkCMS.csproj --configuration Release /p:Version=${VERSION}
 
       - name: Pack .NET Project
         run: dotnet pack .\src\DotMarkCMS\DotMarkCMS.csproj --configuration Release /p:Version=${VERSION}
