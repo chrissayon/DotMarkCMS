@@ -28,10 +28,10 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build .\src\DotMarkCMS\DotMarkCMS.csproj --configuration Release /p:Version=${VERSION}
+        run: dotnet build .\src\DotMarkCMS\DotMarkCMS.csproj --configuration Release --version-suffix ${VERSION}
 
       - name: Pack .NET Project
-        run: dotnet pack .\src\DotMarkCMS\DotMarkCMS.csproj --configuration Release /p:Version=${VERSION}
+        run: dotnet pack .\src\DotMarkCMS\DotMarkCMS.csproj --configuration Release --version-suffix ${VERSION}
 
       - name: Upload Nuget Package
         run: dotnet nuget push .\src\DotMarkCMS\bin\Release\DotMarkCMS.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
